@@ -1,5 +1,6 @@
 ﻿using CollectionViewDemo.ViewModels;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace CollectionViewDemo
 {
@@ -19,10 +20,16 @@ namespace CollectionViewDemo
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            ConfigureCulture();
             ConfigureServices(builder.Services);
 
             return builder.Build();
+        }
+
+        private static void ConfigureCulture()
+        {
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-NG");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-NG");
         }
 
         private static void ConfigureServices(IServiceCollection services)
