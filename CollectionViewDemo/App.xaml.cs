@@ -1,15 +1,21 @@
-﻿namespace CollectionViewDemo
+﻿using CollectionViewDemo.ViewModels;
+using CollectionViewDemo.Views;
+
+namespace CollectionViewDemo
 {
     public partial class App : Application
     {
-        public App()
+        private readonly DataPageViewModel dataPageViewModel;
+
+        public App(DataPageViewModel dataPageViewModel)
         {
             InitializeComponent();
+            this.dataPageViewModel = dataPageViewModel;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new Window(new DataPageView(dataPageViewModel));
         }
     }
 }
