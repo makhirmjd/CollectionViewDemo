@@ -3,9 +3,10 @@
     x:Class="CollectionViewDemo.Views.DataPageView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dataTemplates="clr-namespace:CollectionViewDemo.Selectors"
     xmlns:models="clr-namespace:CollectionViewDemo.Models"
     xmlns:viewModels="clr-namespace:CollectionViewDemo.ViewModels"
     Title="DataPageView"
     x:DataType="viewModels:DataPageViewModel">
-    <CollectionView ItemTemplate="{StaticResource ProductStyle}" ItemsSource="{Binding Products}" />
+    <CollectionView ItemTemplate="{StaticResource ProductTemplates}" ItemsSource="{Binding Products}" />
 </ContentPage>
