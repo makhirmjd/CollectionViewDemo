@@ -10,25 +10,8 @@ public partial class DataPageViewModel : ObservableObject
     [ObservableProperty]
     private bool isRefreshing;
 
-    public ObservableCollection<Product> Products { get; set; }
-
-    public DataPageViewModel()
-    {
-        RefreshItems();
-    }
-
-    [RelayCommand]
-    public async Task Refresh()
-    {
-        IsRefreshing = true;
-        await Task.Delay(3000);
-        RefreshItems();
-        IsRefreshing = false;
-    }
-
-    private void RefreshItems()
-    {
-        Products = [
+    public ObservableCollection<Product> Products { get; set; } = [];
+    public List<Product> OriginalProducts { get; set; } = [
         new ()
         {
             Name = "Yogurt",
@@ -439,5 +422,31 @@ public partial class DataPageViewModel : ObservableObject
             HasOffer = false,
             Stock = 9
         }];
+
+    public DataPageViewModel()
+    {
+        RefreshItems();
+    }
+
+    [RelayCommand]
+    public async Task Refresh()
+    {
+        IsRefreshing = true;
+        await Task.Delay(3000);
+        RefreshItems();
+        IsRefreshing = false;
+    }
+
+    [RelayCommand]
+    public void ThresholdReached() => RefreshItems(Products.Count);
+
+    private void RefreshItems(int lastIndex = 0)
+    {
+        int numberOfItemsPerPage = 10;
+        IEnumerable<Product> pageItems = OriginalProducts.Skip(lastIndex).Take(numberOfItemsPerPage);
+        foreach (var item in pageItems)
+        {
+            Products.Add(item);
+        }
     }
 }

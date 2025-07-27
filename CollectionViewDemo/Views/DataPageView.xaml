@@ -8,7 +8,11 @@
     Title="DataPageView"
     x:DataType="viewModels:DataPageViewModel">
     <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-        <CollectionView ItemTemplate="{StaticResource ProductTemplates}" ItemsSource="{Binding Products}" />
+        <CollectionView
+            ItemTemplate="{StaticResource ProductTemplates}"
+            ItemsSource="{Binding Products}"
+            RemainingItemsThreshold="1"
+            RemainingItemsThresholdReachedCommand="{Binding ThresholdReachedCommand}" />
     </RefreshView>
 
 </ContentPage>
