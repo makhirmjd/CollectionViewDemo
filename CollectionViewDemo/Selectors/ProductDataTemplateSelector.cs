@@ -8,11 +8,8 @@ public class ProductDataTemplateSelector : DataTemplateSelector
     {
         if (item is Product product)
         {
-            if (!product.HasOffer)
-            {
-                Application.Current!.Resources.TryGetValue("ProductStyle", out object? productStyle);
-                return productStyle as DataTemplate ?? new();
-            }
+            Application.Current!.Resources.TryGetValue(product.HasOffer ? "OfferStyle" : "ProductStyle", out object? productStyle);
+            return productStyle as DataTemplate ?? new();
         }
 
         return new ();
