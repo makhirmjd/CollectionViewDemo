@@ -1,11 +1,34 @@
 ﻿using CollectionViewDemo.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
 namespace CollectionViewDemo.ViewModels;
 
-public class DataPageViewModel
+public partial class DataPageViewModel : ObservableObject
 {
-    public ObservableCollection<Product> Products { get; set; } = [
+    [ObservableProperty]
+    private bool isRefreshing;
+
+    public ObservableCollection<Product> Products { get; set; }
+
+    public DataPageViewModel()
+    {
+        RefreshItems();
+    }
+
+    [RelayCommand]
+    public async Task Refresh()
+    {
+        IsRefreshing = true;
+        await Task.Delay(3000);
+        RefreshItems();
+        IsRefreshing = false;
+    }
+
+    private void RefreshItems()
+    {
+        Products = [
         new ()
         {
             Name = "Yogurt",
@@ -416,4 +439,5 @@ public class DataPageViewModel
             HasOffer = false,
             Stock = 9
         }];
+    }
 }
