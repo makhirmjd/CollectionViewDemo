@@ -7,7 +7,11 @@
     xmlns:Models="clr-namespace:CollectionViewDemo.Models"
     Title="LayoutsPageView"
     x:DataType="ModelViews:DataPageViewModel">
-    <CollectionView ItemsSource="{Binding Products}">
+    <CollectionView
+        ItemsSource="{Binding Products}"
+        SelectedItem="{Binding SelectedProduct}"
+        SelectionChangedCommand="{Binding ProductChangedCommand}"
+        SelectionMode="Single">
         <!--  ItemsLayout="HorizontalList"  -->
         <CollectionView.Header>
             <Border

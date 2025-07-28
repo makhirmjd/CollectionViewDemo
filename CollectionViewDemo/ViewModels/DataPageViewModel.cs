@@ -10,6 +10,9 @@ public partial class DataPageViewModel : ObservableObject
     [ObservableProperty]
     private bool isRefreshing;
 
+    [ObservableProperty]
+    private Product selectedProduct = default!;
+
     public ObservableCollection<Product> Products { get; set; } = [];
     public ObservableCollection<Product> OriginalProducts { get; set; } = [
         new ()
@@ -442,6 +445,12 @@ public partial class DataPageViewModel : ObservableObject
 
     [RelayCommand]
     public void Delete(Product product) => Products.Remove(product);
+
+    [RelayCommand]
+    public void ProductChanged()
+    {
+        System.Diagnostics.Debug.WriteLine($"Selected Product: {SelectedProduct?.Name}");
+    }
 
     private void RefreshItems(int lastIndex = 0)
     {
