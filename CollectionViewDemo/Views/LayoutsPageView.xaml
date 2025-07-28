@@ -10,7 +10,8 @@
     <CollectionView ItemsSource="{Binding Products}">
         <!--  ItemsLayout="HorizontalList"  -->
         <CollectionView.ItemsLayout>
-            <LinearItemsLayout ItemSpacing="50" Orientation="Horizontal" />
+            <!--<LinearItemsLayout ItemSpacing="50" Orientation="Horizontal" />-->
+            <GridItemsLayout Orientation="Horizontal" Span="3" />
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Models:Product">
