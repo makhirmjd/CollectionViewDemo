@@ -9,9 +9,32 @@
     x:DataType="ModelViews:DataPageViewModel">
     <CollectionView ItemsSource="{Binding Products}">
         <!--  ItemsLayout="HorizontalList"  -->
+        <CollectionView.Header>
+            <Border
+                Padding="15"
+                BackgroundColor="{StaticResource Primary}"
+                StrokeShape="RoundRectangle 10">
+                <Label
+                    FontAttributes="Bold"
+                    Text="Products"
+                    TextColor="White" />
+            </Border>
+        </CollectionView.Header>
+        <CollectionView.Footer>
+            <HorizontalStackLayout>
+                <Label FontSize="Title">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Power by:" TextColor="{StaticResource Tertiary}" />
+                            <Span Text=".NET MAUI" TextColor="{StaticResource Primary}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+        </CollectionView.Footer>
         <CollectionView.ItemsLayout>
-            <!--<LinearItemsLayout ItemSpacing="50" Orientation="Horizontal" />-->
-            <GridItemsLayout Orientation="Horizontal" Span="3" />
+            <LinearItemsLayout Orientation="Vertical" />
+            <!--<GridItemsLayout Orientation="Horizontal" Span="3" />-->
         </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="Models:Product">
