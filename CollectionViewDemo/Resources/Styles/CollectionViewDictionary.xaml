@@ -5,89 +5,111 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:dataTemplates="clr-namespace:CollectionViewDemo.Selectors"
     xmlns:models="clr-namespace:CollectionViewDemo.Models"
-    x:DataType="models:Product">
+    xmlns:viewModels="clr-namespace:CollectionViewDemo.ViewModels">
     <dataTemplates:ProductDataTemplateSelector x:Key="ProductTemplates" />
     <DataTemplate x:Key="ProductStyle" x:DataType="models:Product">
-        <Grid
-            Margin="15,10,15,0"
-            ColumnDefinitions=".1*,.2*,.7*"
-            RowDefinitions="*,*">
-            <Border
-                Grid.RowSpan="2"
-                Grid.Column="1"
-                Grid.ColumnSpan="2"
-                Stroke="White"
-                StrokeShape="RoundRectangle 10">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="1,0">
-                        <GradientStop Offset="0" Color="#F8F9FA" />
-                        <GradientStop Offset="1" Color="#DEE2E6" />
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-            <Image
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2"
-                HeightRequest="100"
-                Source="{Binding Image}" />
-            <Label
-                Grid.Column="2"
-                FontSize="Large"
-                Text="{Binding Name}"
-                VerticalOptions="Center" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="2"
-                FontSize="Large"
-                Text="{Binding Price, StringFormat='{0:C}'}"
-                VerticalOptions="Center" />
-        </Grid>
+        <SwipeView>
+            <SwipeView.LeftItems>
+                <SwipeItems>
+                    <SwipeItem
+                        BackgroundColor="DarkRed"
+                        Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewModels:DataPageViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        IconImageSource="dotnet_bot.png" />
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            <Grid
+                Margin="15,10,15,0"
+                ColumnDefinitions=".1*,.2*,.7*"
+                RowDefinitions="*,*">
+                <Border
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#F8F9FA" />
+                            <GradientStop Offset="1" Color="#DEE2E6" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Image
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="100"
+                    Source="{Binding Image}" />
+                <Label
+                    Grid.Column="2"
+                    FontSize="Large"
+                    Text="{Binding Name}"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    FontSize="Large"
+                    Text="{Binding Price, StringFormat='{0:C}'}"
+                    VerticalOptions="Center" />
+            </Grid>
+        </SwipeView>
     </DataTemplate>
     <DataTemplate x:Key="OfferStyle" x:DataType="models:Product">
-        <Grid
-            Margin="15,10,15,0"
-            ColumnDefinitions=".3*,.7*"
-            RowDefinitions="*,*">
-            <Border
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2"
-                Stroke="White"
-                StrokeShape="RoundRectangle 10">
-                <Border.Background>
-                    <LinearGradientBrush EndPoint="1,0">
-                        <GradientStop Offset="0" Color="#FFBF47" />
-                        <GradientStop Offset="1" Color="#EEB54C" />
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
-            <Image
-                Grid.RowSpan="2"
-                HeightRequest="100"
-                Source="{Binding Image}" />
-            <Label
-                Grid.Column="1"
-                FontAttributes="Bold"
-                FontSize="Title"
-                Text="{Binding Name, StringFormat='OFFER: {0}'}"
-                TextColor="White"
-                VerticalOptions="Center" />
-            <Label
-                Grid.Row="1"
-                Grid.Column="1"
-                FontAttributes="Bold"
-                FontSize="Title"
-                TextColor="White"
-                VerticalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span Text="{Binding OfferPrice, StringFormat='{0:C}'}" />
-                        <Span
-                            Text="{Binding Price, StringFormat='{0:C}'}"
-                            TextColor="DarkRed"
-                            TextDecorations="Strikethrough" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </Grid>
+        <SwipeView>
+            <SwipeView.LeftItems>
+                <SwipeItems>
+                    <SwipeItem
+                        BackgroundColor="DarkRed"
+                        Command="{Binding DeleteCommand, Source={RelativeSource AncestorType={x:Type viewModels:DataPageViewModel}}}"
+                        CommandParameter="{Binding .}"
+                        IconImageSource="dotnet_bot.png" />
+                </SwipeItems>
+            </SwipeView.LeftItems>
+            <Grid
+                Margin="15,10,15,0"
+                ColumnDefinitions=".3*,.7*"
+                RowDefinitions="*,*">
+                <Border
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 10">
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="1,0">
+                            <GradientStop Offset="0" Color="#FFBF47" />
+                            <GradientStop Offset="1" Color="#EEB54C" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+                <Image
+                    Grid.RowSpan="2"
+                    HeightRequest="100"
+                    Source="{Binding Image}" />
+                <Label
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    Text="{Binding Name, StringFormat='OFFER: {0}'}"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    TextColor="White"
+                    VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding OfferPrice, StringFormat='{0:C}'}" />
+                            <Span
+                                Text="{Binding Price, StringFormat='{0:C}'}"
+                                TextColor="DarkRed"
+                                TextDecorations="Strikethrough" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </SwipeView>
     </DataTemplate>
 </ResourceDictionary>

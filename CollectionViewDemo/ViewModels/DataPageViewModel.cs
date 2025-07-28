@@ -11,7 +11,7 @@ public partial class DataPageViewModel : ObservableObject
     private bool isRefreshing;
 
     public ObservableCollection<Product> Products { get; set; } = [];
-    public List<Product> OriginalProducts { get; set; } = [
+    public ObservableCollection<Product> OriginalProducts { get; set; } = [
         new ()
         {
             Name = "Yogurt",
@@ -439,6 +439,9 @@ public partial class DataPageViewModel : ObservableObject
 
     [RelayCommand]
     public void ThresholdReached() => RefreshItems(Products.Count);
+
+    [RelayCommand]
+    public void Delete(Product product) => Products.Remove(product);
 
     private void RefreshItems(int lastIndex = 0)
     {
