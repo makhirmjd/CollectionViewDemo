@@ -432,6 +432,8 @@ public partial class DataPageViewModel : ObservableObject
     public DataPageViewModel()
     {
         RefreshItems();
+        SelectedProducts.AddRange(Products.Skip(5));
+        SelectedProduct = Products.Skip(2).FirstOrDefault()!;
     }
 
     [RelayCommand]
