@@ -7,60 +7,65 @@
     xmlns:Models="clr-namespace:CollectionViewDemo.Models"
     Title="LayoutsPageView"
     x:DataType="ModelViews:DataPageViewModel">
-    <CollectionView
-        ItemsSource="{Binding Products}"
-        SelectedItem="{Binding SelectedProduct}"
-        SelectionChangedCommand="{Binding ProductChangedCommand}"
-        SelectionMode="Single">
+    <Grid RowDefinitions=".1*,.9*">
+        <Button Command="{Binding ClearSelectionCommand}" Text="Clear Selections" />
         <!--<CollectionView
-        ItemsLayout="HorizontalList"
-        ItemsSource="{Binding Products}"
-        SelectedItems="{Binding SelectedProducts}"
-        SelectionChangedCommand="{Binding ProductsChangedCommand}"
-        SelectionMode="Multiple">-->
+            ItemsLayout="HorizontalList"
+            Grid.Row="1"
+            ItemsSource="{Binding Products}"
+            SelectedItem="{Binding SelectedProduct}"
+            SelectionChangedCommand="{Binding ProductChangedCommand}"
+            SelectionMode="Single">-->
+        <CollectionView
+            Grid.Row="1"
+            ItemsSource="{Binding Products}"
+            SelectedItems="{Binding SelectedProducts}"
+            SelectionChangedCommand="{Binding ProductsChangedCommand}"
+            SelectionMode="Multiple">
 
-        <CollectionView.Header>
-            <Border
-                Padding="15"
-                BackgroundColor="{StaticResource Primary}"
-                StrokeShape="RoundRectangle 10">
-                <Label
-                    FontAttributes="Bold"
-                    Text="Products"
-                    TextColor="White" />
-            </Border>
-        </CollectionView.Header>
-        <CollectionView.Footer>
-            <HorizontalStackLayout>
-                <Label FontSize="Title">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Power by:" TextColor="{StaticResource Tertiary}" />
-                            <Span Text=".NET MAUI" TextColor="{StaticResource Primary}" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </HorizontalStackLayout>
-        </CollectionView.Footer>
-        <CollectionView.ItemsLayout>
-            <LinearItemsLayout Orientation="Vertical" />
-            <!--<GridItemsLayout Orientation="Horizontal" Span="3" />-->
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="Models:Product">
+            <CollectionView.Header>
                 <Border
-                    Margin="15"
                     Padding="15"
-                    HeightRequest="250"
-                    Stroke="{StaticResource Black}"
-                    StrokeShape="RoundRectangle 10"
-                    WidthRequest="200">
-                    <VerticalStackLayout>
-                        <Image Source="{Binding Image}" />
-                        <Label HorizontalTextAlignment="Center" Text="{Binding Name}" />
-                    </VerticalStackLayout>
+                    BackgroundColor="{StaticResource Primary}"
+                    StrokeShape="RoundRectangle 10">
+                    <Label
+                        FontAttributes="Bold"
+                        Text="Products"
+                        TextColor="White" />
                 </Border>
-            </DataTemplate>
-        </CollectionView.ItemTemplate>
-    </CollectionView>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <HorizontalStackLayout>
+                    <Label FontSize="Title">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Power by:" TextColor="{StaticResource Tertiary}" />
+                                <Span Text=".NET MAUI" TextColor="{StaticResource Primary}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </HorizontalStackLayout>
+            </CollectionView.Footer>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+                <!--<GridItemsLayout Orientation="Horizontal" Span="3" />-->
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="Models:Product">
+                    <Border
+                        Margin="15"
+                        Padding="15"
+                        HeightRequest="250"
+                        Stroke="{StaticResource Black}"
+                        StrokeShape="RoundRectangle 10"
+                        WidthRequest="200">
+                        <VerticalStackLayout>
+                            <Image Source="{Binding Image}" />
+                            <Label HorizontalTextAlignment="Center" Text="{Binding Name}" />
+                        </VerticalStackLayout>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>
