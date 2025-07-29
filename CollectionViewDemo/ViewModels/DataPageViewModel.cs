@@ -463,6 +463,13 @@ public partial class DataPageViewModel : ObservableObject
         SelectedProducts?.ForEach(x => System.Diagnostics.Debug.WriteLine($"Selected Product: {((Product)x).Name}"));
     }
 
+    [RelayCommand]
+    public void ClearSelection()
+    {
+        SelectedProduct = default!;
+        SelectedProducts = [];
+    }
+
     private void RefreshItems(int lastIndex = 0)
     {
         int numberOfItemsPerPage = 10;
