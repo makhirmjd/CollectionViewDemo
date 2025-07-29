@@ -15,7 +15,8 @@ namespace CollectionViewDemo
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new LayoutsPageView(dataPageViewModel));
+            //return new Window(new LayoutsPageView(dataPageViewModel));
+            return new Window(new EmptyViewPage());
         }
     }
 }
