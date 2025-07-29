@@ -13,6 +13,9 @@ public partial class DataPageViewModel : ObservableObject
     [ObservableProperty]
     private Product selectedProduct = default!;
 
+    [ObservableProperty]
+    private List<object> selectedProducts = [];
+
     public ObservableCollection<Product> Products { get; set; } = [];
     public ObservableCollection<Product> OriginalProducts { get; set; } = [
         new ()
@@ -450,6 +453,12 @@ public partial class DataPageViewModel : ObservableObject
     public void ProductChanged()
     {
         System.Diagnostics.Debug.WriteLine($"Selected Product: {SelectedProduct?.Name}");
+    }
+
+    [RelayCommand]
+    public void ProductsChanged()
+    {
+        SelectedProducts?.ForEach(x => System.Diagnostics.Debug.WriteLine($"Selected Product: {((Product)x).Name}"));
     }
 
     private void RefreshItems(int lastIndex = 0)
