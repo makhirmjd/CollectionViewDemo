@@ -31,6 +31,6 @@ public partial class ProductsViewPage : ContentPage
     private void Button_Clicked(object sender, EventArgs e)
     {
 		Product? product = viewPageModel.Products.SelectMany(x => x).FirstOrDefault(p => p.Id == 10);
-        CollectionViewHandle.ScrollTo(product);
+        CollectionViewHandle.ScrollTo(product, animate: false,position: ScrollToPosition.Center);
     }
 }
