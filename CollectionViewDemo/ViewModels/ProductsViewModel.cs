@@ -8,21 +8,12 @@ namespace CollectionViewDemo.ViewModels;
 
 public partial class ProductsViewPageModel : ObservableObject
 {
-    public ObservableCollection<ProductsGroup> Products { get; set; } = [];
+    [ObservableProperty]
+    public ObservableCollection<ProductsGroup> products = [];
 
     public ProductsViewPageModel()
     {
-        int id = 0;
-        var grouped = LoadItems().OrderBy(x => x.Name).
-            GroupBy(x => x.Name[0..1]).Select(group =>
-            {
-                foreach (var product in group)
-                {
-                    product.Id = ++id;
-                }
-                return new ProductsGroup(group.Key, [..group]);
-            });
-        Products = [.. grouped];
+        PopulateCollection();
     }
 
     [RelayCommand]
@@ -30,23 +21,12 @@ public partial class ProductsViewPageModel : ObservableObject
     {
         try
         {
-            Product product = new()
+            PopulateCollection(new()
             {
                 Name = "Bitcoin",
                 Price = 999999m,
-                Id = Products.SelectMany(x => x).Max(p => p.Id) + 1
-            };
-            var groupKey = product.Name[0..1];
-            ProductsGroup? group = Products.FirstOrDefault(g => g.Name == groupKey);
-
-            if (group is null)
-            {
-                group = new(groupKey, [product]);
-            }
-            else
-            {
-                group.Add(product);
-            }
+                Id = 100
+            });
         }
         catch (Exception ex)
         {
@@ -466,4 +446,24 @@ public partial class ProductsViewPageModel : ObservableObject
             HasOffer = false,
             Stock = 9
         }];
+
+    private void PopulateCollection(Product product = default!)
+    {
+        List<Product> initialProducts = LoadItems();
+        if (product is not null)
+        {
+            initialProducts.Add(product);
+        }
+        int id = 0;
+        IEnumerable<ProductsGroup> grouped = initialProducts.OrderBy(x => x.Name).
+            GroupBy(x => x.Name[0..1]).Select(group =>
+            {
+                foreach (var product in group)
+                {
+                    product.Id = ++id;
+                }
+                return new ProductsGroup(group.Key, [.. group]);
+            });
+        Products = [..grouped];
+    }
 }

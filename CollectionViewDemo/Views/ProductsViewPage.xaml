@@ -17,7 +17,11 @@
             ItemsUpdatingScrollMode="KeepLastItemInView"
             Scrolled="CollectionView_Scrolled">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                <LinearItemsLayout
+                    ItemSpacing="10"
+                    Orientation="Vertical"
+                    SnapPointsAlignment="Start"
+                    SnapPointsType="Mandatory" />
             </CollectionView.ItemsLayout>
             <CollectionView.GroupHeaderTemplate>
                 <DataTemplate x:DataType="Models:ProductsGroup">
