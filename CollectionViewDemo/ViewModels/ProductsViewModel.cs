@@ -10,8 +10,16 @@ public partial class ProductsViewPageModel : ObservableObject
 
     public ProductsViewPageModel()
     {
+        int id = 0;
         var grouped = LoadItems().OrderBy(x => x.Name).
-            GroupBy(x => x.Name[0..1]).Select(x => new ProductsGroup(x.Key, [.. x]));
+            GroupBy(x => x.Name[0..1]).Select(group =>
+            {
+                foreach (var product in group)
+                {
+                    product.Id = ++id;
+                }
+                return new ProductsGroup(group.Key, [.. group]);
+            });
         Products = [.. grouped];
     }
 
