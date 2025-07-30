@@ -1,5 +1,6 @@
 using CollectionViewDemo.Models;
 using CollectionViewDemo.ViewModels;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace CollectionViewDemo.Views;
@@ -26,11 +27,5 @@ public partial class ProductsViewPage : ContentPage
 		Debug.WriteLine($"CenterItemIndex: {e.CenterItemIndex}");
 		Debug.WriteLine($"LastVisibleItemIndex: {e.LastVisibleItemIndex}");
         Debug.WriteLine("--------------------------------------------------");
-    }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-		Product? product = viewPageModel.Products.SelectMany(x => x).FirstOrDefault(p => p.Id == 10);
-        CollectionViewHandle.ScrollTo(product, animate: false,position: ScrollToPosition.Center);
     }
 }

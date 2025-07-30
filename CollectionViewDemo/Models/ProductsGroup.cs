@@ -1,4 +1,6 @@
-﻿namespace CollectionViewDemo.Models;
+﻿using System.Collections.ObjectModel;
+
+namespace CollectionViewDemo.Models;
 
 public partial class ProductsGroup(string name, List<Product> products) : List<Product>(products)
 {
