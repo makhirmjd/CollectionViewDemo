@@ -7,7 +7,7 @@
     xmlns:ViewModels="clr-namespace:CollectionViewDemo.ViewModels"
     Title="ProductsViewPage"
     x:DataType="ViewModels:ProductsViewPageModel">
-    <CollectionView IsGrouped="True" ItemsSource="{Binding Products}">
+    <CollectionView IsGrouped="True" ItemsSource="{Binding Products}" Scrolled="CollectionView_Scrolled">
         <CollectionView.ItemsLayout>
             <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
         </CollectionView.ItemsLayout>
