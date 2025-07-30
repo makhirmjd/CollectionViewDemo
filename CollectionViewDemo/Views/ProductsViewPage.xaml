@@ -8,7 +8,7 @@
     Title="ProductsViewPage"
     x:DataType="ViewModels:ProductsViewPageModel">
     <Grid RowDefinitions=".1*,.9*">
-        <Button Clicked="Button_Clicked" Text="Manual Scrolling" />
+        <Button Command="{Binding AddProductCommand}" Text="Manual Scrolling" />
         <CollectionView
             x:Name="CollectionViewHandle"
             Grid.Row="1"

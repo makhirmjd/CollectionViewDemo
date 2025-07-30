@@ -28,19 +28,4 @@ public partial class ProductsViewPage : ContentPage
 		Debug.WriteLine($"LastVisibleItemIndex: {e.LastVisibleItemIndex}");
         Debug.WriteLine("--------------------------------------------------");
     }
-
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        ProductsGroup product = new(
-            "New Group", [
-                new(){
-                    Id = 100,
-                    Name = "Bitcoin",
-                    Price = 999999m
-                }]);
-        ObservableCollection<ProductsGroup> products = viewPageModel.Products;
-        products.Add(product);
-        //Product? product = viewPageModel.Products.SelectMany(x => x).FirstOrDefault(p => p.Id == 10);
-        //CollectionViewHandle.ScrollTo(product, animate: false,position: ScrollToPosition.Center);
-    }
 }

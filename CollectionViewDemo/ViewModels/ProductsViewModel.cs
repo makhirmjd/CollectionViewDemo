@@ -1,13 +1,14 @@
 ﻿using CollectionViewDemo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace CollectionViewDemo.ViewModels;
 
 public partial class ProductsViewPageModel : ObservableObject
 {
-    [ObservableProperty]
-    private ObservableCollection<ProductsGroup> products = [];
+    public ObservableCollection<ProductsGroup> Products { get; set; } = [];
 
     public ProductsViewPageModel()
     {
@@ -19,9 +20,39 @@ public partial class ProductsViewPageModel : ObservableObject
                 {
                     product.Id = ++id;
                 }
-                return new ProductsGroup(group.Key, [.. group]);
+                return new ProductsGroup(group.Key, [..group]);
             });
         Products = [.. grouped];
+    }
+
+    [RelayCommand]
+    public void AddProduct()
+    {
+        try
+        {
+            Product product = new()
+            {
+                Name = "Bitcoin",
+                Price = 999999m,
+                Id = Products.SelectMany(x => x).Max(p => p.Id) + 1
+            };
+            var groupKey = product.Name[0..1];
+            ProductsGroup? group = Products.FirstOrDefault(g => g.Name == groupKey);
+
+            if (group is null)
+            {
+                group = new(groupKey, [product]);
+            }
+            else
+            {
+                group.Add(product);
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex);
+        }
+        
     }
 
     private List<Product> LoadItems() => [
