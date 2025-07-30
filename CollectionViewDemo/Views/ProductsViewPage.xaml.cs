@@ -1,5 +1,6 @@
 using CollectionViewDemo.Models;
 using CollectionViewDemo.ViewModels;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace CollectionViewDemo.Views;
@@ -30,7 +31,16 @@ public partial class ProductsViewPage : ContentPage
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-		Product? product = viewPageModel.Products.SelectMany(x => x).FirstOrDefault(p => p.Id == 10);
-        CollectionViewHandle.ScrollTo(product, animate: false,position: ScrollToPosition.Center);
+        ProductsGroup product = new(
+            "New Group", [
+                new(){
+                    Id = 100,
+                    Name = "Bitcoin",
+                    Price = 999999m
+                }]);
+        ObservableCollection<ProductsGroup> products = viewPageModel.Products;
+        products.Add(product);
+        //Product? product = viewPageModel.Products.SelectMany(x => x).FirstOrDefault(p => p.Id == 10);
+        //CollectionViewHandle.ScrollTo(product, animate: false,position: ScrollToPosition.Center);
     }
 }

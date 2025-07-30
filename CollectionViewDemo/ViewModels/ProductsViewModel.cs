@@ -1,12 +1,13 @@
 ﻿using CollectionViewDemo.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace CollectionViewDemo.ViewModels;
 
 public partial class ProductsViewPageModel : ObservableObject
 {
     [ObservableProperty]
-    private List<ProductsGroup> products = [];
+    private ObservableCollection<ProductsGroup> products = [];
 
     public ProductsViewPageModel()
     {

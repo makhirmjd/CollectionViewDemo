@@ -14,6 +14,7 @@
             Grid.Row="1"
             IsGrouped="True"
             ItemsSource="{Binding Products}"
+            ItemsUpdatingScrollMode="KeepLastItemInView"
             Scrolled="CollectionView_Scrolled">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
